@@ -12,9 +12,7 @@
 </head>
 <body>
     <div class="modal-header">
-        <p class="logo">
-            Get Outta Here
-        </p>
+        <div class="logo">Get Outta Here</div>
         <button class = "btn btn-secondary btn-sm" type="button" id="pause-resume" value="0">
             <label id="pause-resume-label" for="pause-resume"></label>
             <i class="fas fa-pause" id="pause-resume-button"></i>
@@ -26,20 +24,17 @@
             <text id="time">
                 Time Limit (minutes)
             </text>
-            <br>
             <form>
-                <div class="btn btn-info" id="decrease" value="Decrease Value">-</div>
-                <input type="number" id="number">
-                <div class="btn btn-info" id="increase" value="Increase Value">+</div>
+                <div class="btn btn-secondary" id="decrease" value="Decrease Value">-</div>
+                <input type="number" id="number" value="0">
+                <div class="btn btn-secondary" id="increase" value="Increase Value">+</div>
             </form>
         </div>  
         <br>
-        <div class="buttons">
-            <button class = "btn btn-info" type="button" id="websites">
-                <label for="websites">View websites</label>
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </div><br>
+        <button class = "menu-entry" type="button" id="websites">
+            <label for="websites">View websites</label>
+            <i class="fas fa-arrow-right"></i>
+        </button>
     </div>
 </body>
 </html>

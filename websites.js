@@ -76,7 +76,7 @@ function populateTable(tableBody, data){
             const del_td = document.createElement("td");
             const del_btn = document.createElement("input");
             del_btn.type = "button";
-            del_btn.className = "btn btn-danger";
+            del_btn.className = "menu-entry del-btn";
             del_btn.value = "Delete";
             del_btn.id = row[0];
             del_btn.onclick = () => delete_website(del_btn.id);

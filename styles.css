@@ -1,26 +1,59 @@
 html,body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-    margin: 12px;
+    margin: 0px;
     min-height: 180px;
-    padding: 5px;
-    width: 250px;
+    padding: 0px;
+    width: 350px;
     background-color: whitesmoke;
 }
+
 .modal-header {
-    font-family: 'Open Sans', sans-serif;
+    justify-content: space-between;
 }
 
+.modal-inputs {
+    justify-content: center;
+}
 .logo {
-    font-size: 24px;
+    font-size: 20px;
 }
 
+.menu-entry {
+    padding: 2px 10px;
+    display: block;
+    width: 100%;
+    border-style: outset;
+    border: none;
+    background-color: transparent;
+}
+.menu-entry:hover {
+    border-style: outset;
+    border: none;
+    background-color: gray;
+}
+#add-btn:hover{
+    background-color: rgb(141, 247, 114);
+}
+
+#clear-btn:hover{
+    background-color: rgb(255, 72, 0);
+}
+
+.del-btn:hover{
+    background-color: rgb(255, 72, 0);
+}
 
 .modal-inputs {
     align-items: center;
 }
 i {
     padding: 5px 5px;
+}
+
+#pause-resume {
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 form {
@@ -64,11 +97,17 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: center;
 }
 
-.buttons {
+.websites-table {
+    padding-top: 5px;
+    height: 100px !important;
+    overflow: scroll;
+}
+
+.websites-table::-webkit-scrollbar {
+    display: none;
+  }
+
+#timer {
     text-align: center;
 }
 
-.websites-table {
-    height: 100px !important;
-    overflow-y: scroll;
-}
