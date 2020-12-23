@@ -1,0 +1,74 @@
+html,body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin: 12px;
+    min-height: 180px;
+    padding: 5px;
+    width: 250px;
+    background-color: whitesmoke;
+}
+.modal-header {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+
+.modal-inputs {
+    align-items: center;
+}
+i {
+    padding: 5px 5px;
+}
+
+form {
+   align-items: center;
+   text-align: center;
+}
+
+
+form #decrease {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+}
+
+form #increase {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+}
+
+form #input-wrap {
+    margin: 0px;
+    padding: 0px;
+}
+
+input#number {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 3px;
+    width: 40px;
+    height: 34px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#number {
+    text-align: center;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.websites-table {
+    height: 100px !important;
+    overflow-y: scroll;
+}
