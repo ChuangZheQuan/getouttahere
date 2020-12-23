@@ -47,7 +47,6 @@ function pause_resume(){
             storage.set({"pause-resume-label": 0})
         })
         // pause background.js
-        
     }
     location.reload();
 }

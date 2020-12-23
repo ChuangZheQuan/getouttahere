@@ -5,7 +5,7 @@ const storage = chrome.storage.sync;
 
 // When page of active tab changes
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
-    if (changeInfo.status == "completed"){
+    if (changeInfo.status == "complete"){
         chrome.tabs.query({'active':true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
             var activeTab = tabs[0].url;
             console.log(activeTab);
@@ -25,7 +25,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
 
 //When user clicks on a different tab
 chrome.tabs.onActiveChanged.addListener(function (){
-    console.log('on active change');
     chrome.tabs.query({'active':true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
         var activeTab = tabs[0].url;
         console.log(activeTab);
