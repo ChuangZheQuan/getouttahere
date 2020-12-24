@@ -6,7 +6,7 @@
     "browser_action": {
         "default_popup": "/screens/popup.html"
     },
-    "permissions": ["tabs", "notifications", "storage", "alarms"],
+    "permissions": ["tabs", "notifications", "storage"],
     "content_scripts": [
         {
             "js": ["popup.js", "websites.js"],
