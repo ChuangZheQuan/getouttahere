@@ -93,7 +93,14 @@ function populateTable(tableBody, data){
 
 function clear_websites_table(){
     if (confirm("Remove all websites from naughty list?")){
-        chrome.storage.sync.clear(() => console.log('cleared'));
+        chrome.storage.sync.get(null, (entries) => {
+            let obj = Object.entries(entries);
+            for (row of obj){
+                if (!Number.isInteger(row[1])){
+                    chrome.storage.sync.remove(row)
+                }
+            } 
+        })
         location.reload();
     } else {}
 }

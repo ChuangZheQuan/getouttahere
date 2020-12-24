@@ -1,7 +1,6 @@
-let running_time = false;
+var running_time = false;
 var myTime;
 const storage = chrome.storage.sync;
-
 
 // When page of active tab changes
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
@@ -41,15 +40,33 @@ chrome.tabs.onActiveChanged.addListener(function (){
     })
 })
 
+
+async function get_close_tab_status_from_storage(){//RESOLVE VALUE = NULL
+    var close_tab_status = true;
+    const p = new Promise((resolve, reject) => {
+        storage.get("close-tab", (result) => {
+            if (result["close-tab"] === 0){
+                resolve(true);
+            } else {
+                reject(false);
+            }
+        })
+    })
+    await p.then((message) => close_tab_status = message).catch((message) => close_tab_status = message);
+    return close_tab_status;
+}
+
+
 async function run(){
     //when timeout, send alert and close the tab
-    console.log("RUN");
-    const t = await get_time_from_storage()
-    console.log("time: " + t);
-    myTime = setTimeout(close_active_tab, t); /* setTime returns a timeoutID (positive integer) */
+    //console.log("RUN");
+    const t = await get_time_from_storage();
+    //console.log("time: " + t);
+    const f = await get_close_tab_status_from_storage() ? dont_close_active_tab : close_active_tab;
+    myTime = setTimeout(f, t); /* setTime returns a timeoutID (positive integer) */
 }
 function stop(){
-    console.log("STOP");
+    //console.log("STOP");
     clearTimeout(myTime);
 }
 
@@ -60,14 +77,14 @@ async function check_in_naughty_list(tab){
             var entries = Object.entries(result);
             for (entry of entries) {
                 if (!Number.isInteger(entry[1]) && compare_url(entry[1], tab)) {
-                    console.log("compare url gives true");
+                    //("compare url gives true");
                     resolve();
                     return;
                 } else {
                     continue;
                 }
             } 
-            console.log("compare url gives false");
+            //console.log("compare url gives false");
             reject();
             return;
         })
@@ -107,13 +124,24 @@ function create_alert(){
 
 //close active tab that user is on
 function close_active_tab(){
-    //WORKS
+    //("CLOSE");
     running_time = false;
     create_alert();
     chrome.tabs.getSelected(function(tab) {
         chrome.tabs.remove(tab.id);
     });
+}
 
+function dont_close_active_tab(){
+    //console.log("DONT CLOSE");
+    running_time = false;
+    create_alert();
 }
 
 
+chrome.runtime.onInstalled.addListener(function(details){
+    if (details.reason == 'install'){
+        storage.set({"time": 5});
+        storage.set({"close-tab": 0});
+    }
+})

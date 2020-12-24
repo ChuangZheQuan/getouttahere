@@ -1,7 +1,7 @@
 {
     "name": "Get Outta Here",
     "version": "1.0.0",
-    "description": "Reduce the amount of time spent on unproductive websites",
+    "description": "Creates a timer to cut down time spent on unproductive websites",
     "manifest_version": 2,
     "browser_action": {
         "default_popup": "/screens/popup.html"
