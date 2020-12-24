@@ -35,18 +35,21 @@ function pause_resume(){
     // 0 is for pause, 1 is for resume
     let val = document.getElementById("pause-resume-label").value;
     if (val === 0) {
+        // pause background.js
         document.getElementById("pause-resume-label").value = 1;
         document.getElementById("pause-resume-button").className = "fas fa-play";
         storage.remove("pause-resume-label", () => {
             storage.set({"pause-resume-label": 1})
         })
+        
     } else if (val === 1) {
+        // resume background.js
         document.getElementById("pause-resume-label").value = 0;
         document.getElementById("pause-resume-button").className = "fas fa-pause";
         storage.remove("pause-resume-label", () => {
             storage.set({"pause-resume-label": 0})
         })
-        // pause background.js
+        
     }
     location.reload();
 }
@@ -73,14 +76,15 @@ document.addEventListener("DOMContentLoaded", function(){
     storage.get("pause-resume-label", (result) => {
         console.log(result["pause-resume-label"]);
         if (result["pause-resume-label"] === 1){ 
-            //Initially paused, change to resume
+            // pause background.js
             document.getElementById("pause-resume-label").value = 1;
             document.getElementById("pause-resume-button").className = "fas fa-play";
         } else if (result["pause-resume-label"] === 0){
-            //Initially resume, change to paused
+            // resume background.js
             document.getElementById("pause-resume-label").value = 0;
             document.getElementById("pause-resume-button").className = "fas fa-pause";
         } else {
+            // resume background.js
             document.getElementById("pause-resume-label").value = 1;
             document.getElementById("pause-resume-button").className = "fas fa-pause";
         }

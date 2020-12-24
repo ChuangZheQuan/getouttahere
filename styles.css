@@ -37,11 +37,11 @@ html,body {
 }
 
 #clear-btn:hover{
-    background-color: rgb(255, 72, 0);
+    background-color: rgb(252, 83, 41);
 }
 
 .del-btn:hover{
-    background-color: rgb(255, 72, 0);
+    background-color: rgb(252, 83, 41);
 }
 
 .modal-inputs {
@@ -110,4 +110,3 @@ input[type=number]::-webkit-outer-spin-button {
 #timer {
     text-align: center;
 }
-

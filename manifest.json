@@ -1,12 +1,12 @@
 {
     "name": "Get Outta Here",
     "version": "1.0.0",
-    "description": "Your Internet Mom",
+    "description": "Reduce the amount of time spent on unproductive websites",
     "manifest_version": 2,
     "browser_action": {
         "default_popup": "/screens/popup.html"
     },
-    "permissions": ["tabs", "notifications", "storage"],
+    "permissions": ["tabs", "notifications", "storage", "alarms"],
     "content_scripts": [
         {
             "js": ["popup.js", "websites.js"],
