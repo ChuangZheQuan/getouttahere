@@ -7,9 +7,9 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
     if (changeInfo.status == "complete"){
         chrome.tabs.query({'active':true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
             var activeTab = tabs[0].url;
-            console.log(activeTab);
+            //console.log(activeTab);
             await check_in_naughty_list(activeTab);
-            console.log("running time: " + running_time.toString());
+            //console.log("running time: " + running_time.toString());
             
             if (running_time){
                 run();
@@ -26,9 +26,9 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
 chrome.tabs.onActiveChanged.addListener(function (){
     chrome.tabs.query({'active':true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
         var activeTab = tabs[0].url;
-        console.log(activeTab);
+        //console.log(activeTab);
         await check_in_naughty_list(activeTab);
-        console.log("running time: " + running_time.toString());
+        //console.log("running time: " + running_time.toString());
         
         if (running_time){
             run();
@@ -71,7 +71,6 @@ function stop(){
 }
 
 async function check_in_naughty_list(tab){
-    //NEED TO FIND WAY TO RETURN BOOL
     const p = new Promise((resolve, reject) => {
         storage.get(null, (result) => {
             var entries = Object.entries(result);
@@ -94,7 +93,6 @@ async function check_in_naughty_list(tab){
 
 // compare active tab url to url in table
 function compare_url(table_url, url){
-    //WORKS 
     try{
         return url !== '' && (table_url.includes(url) || url.includes(table_url));
     } catch (e) {
@@ -102,7 +100,7 @@ function compare_url(table_url, url){
     }
 }
 
-async function get_time_from_storage(){//RESOLVE VALUE = NULL
+async function get_time_from_storage(){ //RESOLVE VALUE = NULL
     let time = 5; //default time
     const p = new Promise((resolve, reject) => {
         storage.get("time", (result) => {
@@ -124,7 +122,7 @@ function create_alert(){
 
 //close active tab that user is on
 function close_active_tab(){
-    //("CLOSE");
+    //console.log("CLOSE");
     running_time = false;
     create_alert();
     chrome.tabs.getSelected(function(tab) {
