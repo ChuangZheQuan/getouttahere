@@ -1,6 +1,7 @@
 var running_time = false;
 var myTime;
 const storage = chrome.storage.sync;
+var prev_website_running = false;
 
 // When page of active tab changes
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
@@ -10,13 +11,15 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
             //console.log(activeTab);
             await check_in_naughty_list(activeTab);
             //console.log("running time: " + running_time.toString());
-            
-            if (running_time){
+            if (running_time && prev_website_running){
+
+            } else if (running_time){
                 run();
             } else if (!running_time && myTime !== null){
                 stop();
             } else {
                 running_time = false;
+                prev_website_running = false;
             }
         })
     }
@@ -29,13 +32,15 @@ chrome.tabs.onActiveChanged.addListener(function (){
         //console.log(activeTab);
         await check_in_naughty_list(activeTab);
         //console.log("running time: " + running_time.toString());
-        
-        if (running_time){
+        if (running_time && prev_website_running){
+
+        } else if (running_time){
             run();
         } else if (!running_time && myTime !== null){
             stop();
         } else {
             running_time = false;
+            prev_website_running = false;
         }
     })
 })
@@ -59,14 +64,14 @@ async function get_close_tab_status_from_storage(){//RESOLVE VALUE = NULL
 
 async function run(){
     //when timeout, send alert and close the tab
-    //console.log("RUN");
+    console.log("RUN");
     const t = await get_time_from_storage();
     //console.log("time: " + t);
     const f = await get_close_tab_status_from_storage() ? dont_close_active_tab : close_active_tab;
     myTime = setTimeout(f, t); /* setTime returns a timeoutID (positive integer) */
 }
 function stop(){
-    //console.log("STOP");
+    console.log("STOP");
     clearTimeout(myTime);
 }
 
@@ -88,6 +93,11 @@ async function check_in_naughty_list(tab){
             return;
         })
     })
+    if (running_time){
+        prev_website_running = true;
+    } else {
+        prev_website_running = false;
+    }
     await p.then(() => running_time = true).catch(() => running_time = false);
 }
 
@@ -124,6 +134,7 @@ function create_alert(){
 function close_active_tab(){
     //console.log("CLOSE");
     running_time = false;
+    prev_website_running = false;
     create_alert();
     chrome.tabs.getSelected(function(tab) {
         chrome.tabs.remove(tab.id);
@@ -133,6 +144,7 @@ function close_active_tab(){
 function dont_close_active_tab(){
     //console.log("DONT CLOSE");
     running_time = false;
+    prev_website_running = false;
     create_alert();
 }
 
@@ -143,3 +155,5 @@ chrome.runtime.onInstalled.addListener(function(details){
         storage.set({"close-tab": 0});
     }
 })
+
+
