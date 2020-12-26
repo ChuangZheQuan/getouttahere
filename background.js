@@ -64,14 +64,14 @@ async function get_close_tab_status_from_storage(){//RESOLVE VALUE = NULL
 
 async function run(){
     //when timeout, send alert and close the tab
-    console.log("RUN");
+    //console.log("RUN");
     const t = await get_time_from_storage();
     //console.log("time: " + t);
     const f = await get_close_tab_status_from_storage() ? dont_close_active_tab : close_active_tab;
     myTime = setTimeout(f, t); /* setTime returns a timeoutID (positive integer) */
 }
 function stop(){
-    console.log("STOP");
+    //console.log("STOP");
     clearTimeout(myTime);
 }
 
@@ -127,7 +127,7 @@ async function get_time_from_storage(){ //RESOLVE VALUE = NULL
 
 //alert user that time is up 
 function create_alert(){
-    alert("times up!");
+    alert("Times up!");
 }
 
 //close active tab that user is on
