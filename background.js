@@ -6,8 +6,8 @@ var prev_website_running = false;
 //MAIN FLOW
 // When page of active tab changes
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
-    if (changeInfo.status == "complete"){
-        chrome.tabs.query({'active':true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
+    if (changeInfo.status === "complete" && tab.status == 'complete' && tab.url != undefined){
+        chrome.tabs.query({'active': true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
             var activeTab = tabs[0].url;
             //console.log(activeTab);
             await check_in_naughty_list(activeTab);
@@ -23,7 +23,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
                 prev_website_running = false;
             }
         })
-    }
+    } 
 })
 
 //When user clicks on a different tab
@@ -100,7 +100,7 @@ function compare_url(table_url, url){
 
 // CHECK IF CLOSE TAB AFTER TIME'S UP
 async function get_close_tab_status_from_storage(){//RESOLVE VALUE = NULL
-    var close_tab_status = true;
+    var close_tab_status;
     const p = new Promise((resolve, reject) => {
         storage.get("close-tab", (result) => {
             if (result["close-tab"] === 0){

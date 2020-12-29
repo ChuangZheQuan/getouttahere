@@ -1,10 +1,10 @@
-html,body {
+html, body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     margin: 0px;
-    min-height: 180px;
+    height: 180px !important;
     padding: 0px;
-    width: 350px;
+    width: 350px !important; 
     background-color: whitesmoke;
 }
 
@@ -15,6 +15,7 @@ html,body {
 .modal-inputs {
     justify-content: center;
 }
+
 .logo {
     font-size: 20px;
 }
@@ -27,11 +28,13 @@ html,body {
     border: none;
     background-color: transparent;
 }
+
 .menu-entry:hover {
     border-style: outset;
     border: none;
     background-color: gray;
 }
+
 #add-btn:hover{
     background-color: rgb(141, 247, 114);
 }
