@@ -10,7 +10,7 @@ Whenever the extension detects that the current website is in your list of unpro
 - Choose duration of timer
 - Choose to close the active tab after time is up or not
     
-// ADD PICTURES AFTER DRAWING LOGO
+(/images/popup.png) (/images/websites_table.png) (/images/times_up.png)
 
 ### No On/Off Button
 I decided against having an on/off button because I don't want to be tempted to turn it off. To turn it off is by typing `chrome://extensions` into the search bar and manually turning it off there. Hopefully, this extra barrier deters users from turning it off when it's convenient for them.
