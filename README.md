@@ -15,4 +15,7 @@ Whenever the extension detects that the current website is in your list of unpro
 ### No On/Off Button
 I decided against having an on/off button because I don't want to be tempted to turn it off. To turn it off is by typing `chrome://extensions` into the search bar and manually turning it off there. Hopefully, this extra barrier deters users from turning it off when it's convenient for them.
 
+### Issues
+There is a problem with Chrome extensions where the CSS hover lags when using an external monitor. This doesn't affect the extension's functionality. 
+(https://bugs.chromium.org/p/chromium/issues/detail?id=971701)
 
