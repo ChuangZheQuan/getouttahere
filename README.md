@@ -1,5 +1,4 @@
-![Alt text](https://https://github.com/ChuangZheQuan/getouttahere/blob/master/images/icon.png?raw=true) 
-# Get Outta Here
+# ![Get Outta Here](/images/icon48.png) Get Outta Here
 
 Google Chrome extension to control your time spent on unproductive websites. 
 
