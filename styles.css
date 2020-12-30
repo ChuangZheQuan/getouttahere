@@ -32,7 +32,7 @@ html, body {
 .menu-entry:hover {
     border-style: outset;
     border: none;
-    background-color: rgb(170, 170, 170);
+    background-color: rgb(128, 128, 128);
 }
 
 #add-btn:hover{
