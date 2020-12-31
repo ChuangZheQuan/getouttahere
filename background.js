@@ -2,12 +2,13 @@ var running_time = false;
 var myTime;
 const storage = chrome.storage.sync;
 var prev_website_running = false;
+var last_run;
 
 //MAIN FLOW
 //When page changes
 chrome.webNavigation.onHistoryStateUpdated.addListener(function(details){
-    console.log("hi")
-    if(details.frameId === 0 && details.parentFrameId === -1){
+    if(typeof last_run === 'undefined' || notRunWithinTheLastSecond(details.timeStamp)){
+        last_run = details.timeStamp;
         chrome.tabs.get(details.tabId, function(tab){
             if (tab.url === details.url){
                 chrome.tabs.query({'active': true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
@@ -31,33 +32,15 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details){
     }
 })
 
-//When page refreshes
-chrome.webNavigation.onDOMContentLoaded.addListener(function(details){
-    if(details.frameId === 0 && details.parentFrameId === -1){
-        chrome.tabs.get(details.tabId, function(tab){
-            if (tab.url === details.url){
-                chrome.tabs.query({'active': true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs){
-                    var activeTab = tabs[0].url;
-                    //console.log(activeTab);
-                    await check_in_naughty_list(activeTab);
-                    //console.log("running time: " + running_time.toString());
-                    if (running_time && prev_website_running){
-        
-                    } else if (running_time){
-                        run();
-                    } else if (!running_time && myTime !== null){
-                        stop();
-                    } else {
-                        running_time = false;
-                        prev_website_running = false;
-                    }
-                })
-            }
-        })
+const notRunWithinTheLastSecond = (dt) => {
+    const diff = dt - last_run;
+    if (diff < 1000){
+      return false;
+    } else {
+      return true;
     }
-})
-
-
+}
+ 
 
 //When user clicks on a different tab
 chrome.tabs.onActiveChanged.addListener(function (){
